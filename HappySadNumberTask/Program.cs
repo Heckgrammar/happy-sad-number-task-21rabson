@@ -1,4 +1,6 @@
-﻿namespace HappySadNumberTask
+﻿using System.Globalization;
+
+namespace HappySadNumberTask
 {
     internal class Program
     {
@@ -25,6 +27,59 @@
             //The program should take a number as input and output whether the number is happy or sad
             //test your program with the inputs of 19 and 20
             //show your output in the readme file
+
+            Console.WriteLine("Enter a number");
+            string num = Console.ReadLine();
+            int total = 0;
+            int totalbefore = 0;
+            bool Happy = false;
+            int temp;
+            int digit;
+                for (int i = 0; i < num.Length; i++)
+                {
+                    digit = num[i] - '0';
+                    temp = digit * digit;
+                    total = total + Convert.ToInt32(temp);
+                    //Console.WriteLine(total);
+                }
+                if (total == 1)
+                {
+                    Happy = true;
+                    
+                }
+            
+            while (Happy != true)
+            {
+                totalbefore = total;
+                total = 0;
+                for (int i = 0; i < Convert.ToString(total).Length; i++)
+                {
+                    digit = num[i] - '0';
+                    temp = digit * digit;
+                    total = total + temp;
+                    //Console.WriteLine(total);
+                }
+                if (total == 1)
+                {
+                    Happy = true;
+
+                }
+                else if (total == totalbefore)
+                {
+                    Happy = false;
+                    break;
+                }
+               
+            
+            }
+            if (Happy == true)
+            {
+                Console.WriteLine("Happy");
+            }
+            else
+            {
+                Console.WriteLine("Sad");
+            }
         }
     }
 }
